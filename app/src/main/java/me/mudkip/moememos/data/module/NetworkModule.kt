@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,6 +20,7 @@ object NetworkModule {
     fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
         return OkHttpClient.Builder()
+            .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
             .cookieJar(cookieJar)
             .build()
     }

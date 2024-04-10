@@ -107,7 +107,7 @@ fun MemoInputPage(
     var photoImageUri by remember { mutableStateOf<Uri?>(null) }
 
     val context = LocalContext.current
-    val defaultVisibility = LocalUserState.current.currentUser?.memoVisibility ?: MemosVisibility.PRIVATE
+    val defaultVisibility = LocalUserState.current.currentUser?.memoVisibility ?: MemosVisibility.PUBLIC
     var currentVisibility by remember { mutableStateOf( memo?.visibility ?: defaultVisibility) }
 
     fun uploadImage(uri: Uri) = coroutineScope.launch {

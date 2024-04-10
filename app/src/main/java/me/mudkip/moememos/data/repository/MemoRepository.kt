@@ -17,7 +17,7 @@ class MemoRepository @Inject constructor(private val memosApiService: MemosApiSe
         api.listMemo(rowStatus = rowStatus)
     }
 
-    suspend fun createMemo(content: String, resourceIdList: List<Long>? = null, visibility: MemosVisibility = MemosVisibility.PRIVATE): ApiResponse<Memo> = memosApiService.call { api ->
+    suspend fun createMemo(content: String, resourceIdList: List<Long>? = null, visibility: MemosVisibility = MemosVisibility.PUBLIC): ApiResponse<Memo> = memosApiService.call { api ->
         api.createMemo(CreateMemoInput(content, resourceIdList = resourceIdList, visibility = visibility))
     }
 
@@ -49,7 +49,7 @@ class MemoRepository @Inject constructor(private val memosApiService: MemosApiSe
         api.deleteMemo(memoId)
     }
 
-    suspend fun editMemo(memoId: Long, content: String, resourceIdList: List<Long>? = null, visibility: MemosVisibility = MemosVisibility.PRIVATE): ApiResponse<Memo> = memosApiService.call { api ->
+    suspend fun editMemo(memoId: Long, content: String, resourceIdList: List<Long>? = null, visibility: MemosVisibility = MemosVisibility.PUBLIC): ApiResponse<Memo> = memosApiService.call { api ->
         api.patchMemo(memoId, PatchMemoInput(id = memoId, content = content, resourceIdList = resourceIdList, visibility = visibility))
     }
 

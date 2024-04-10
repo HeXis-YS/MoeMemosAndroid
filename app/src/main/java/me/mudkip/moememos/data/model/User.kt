@@ -49,7 +49,7 @@ data class User(
         try {
             MemosVisibility.valueOf(it.value.removePrefix("\"").removeSuffix("\""))
         } catch (_: IllegalArgumentException) {
-            MemosVisibility.PRIVATE
+            MemosVisibility.PUBLIC
         }
-    } ?: MemosVisibility.PRIVATE
+    } ?: MemosVisibility.PUBLIC
 }

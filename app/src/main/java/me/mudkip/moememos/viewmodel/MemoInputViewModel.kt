@@ -54,9 +54,9 @@ class MemoInputViewModel @Inject constructor(
 
     suspend fun upload(bitmap: Bitmap): ApiResponse<Resource> = withContext(viewModelScope.coroutineContext) {
         val bos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos)
+        bitmap.compress(Bitmap.CompressFormat.WEBP_LOSSLESS, 100, bos)
         val bytes = bos.toByteArray()
-        resourceRepository.uploadResource(bytes, UUID.randomUUID().toString() + ".jpg", "image/jpeg".toMediaType()).suspendOnSuccess {
+        resourceRepository.uploadResource(bytes, UUID.randomUUID().toString() + ".webp", "image/webp".toMediaType()).suspendOnSuccess {
             uploadResources.add(data)
         }
     }
